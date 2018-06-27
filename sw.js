@@ -1,4 +1,4 @@
-let staticCacheName = 'currency-converter';
+var staticCacheName = 'currency-converter';
 
 self.addEventListener('install', function(event) {
  event.waitUntil(
