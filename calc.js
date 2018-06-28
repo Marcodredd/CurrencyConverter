@@ -4,7 +4,32 @@ if (!('indexedDB' in window)) {
 	console.log('This browser doesn\'t support IndexedDB');
 }
 
-var dbPromise = idb.open('currency-converter', 1);
+const url = 'https://free.currencyconverterapi.com/api/v5/countries';
+
+const dbPromise = idb.open('currency-converter', 2, upgradeDb => {
+	switch(upgradeDb.oldVersion) {
+		case 0:
+		upgradeDb.createObjectStore('currency', {keypath: 'id'});
+	}
+});
+fetch(url)
+  .then(response => response.json())
+  .then(currencies => {
+  dbPromise.then(db => {
+    if(!db) return;
+    const currencyExchange = [currencies.results];
+    const tx = db.transaction('currency', 'readwrite');
+    const store = tx.objectStore('currency');
+    let i = 0;
+    currencyExchange.forEach(currency => {
+      for (let value in currency) {
+        store.put(currency[value]);
+      }
+    });
+    return tx.complete;
+  });
+});
+
 
 
 fetch('https://free.currencyconverterapi.com/api/v5/countries')
@@ -53,16 +78,15 @@ function calculateAmt() {
 	
 	let toCurrency = document.getElementById('currencyTo').value;
 	
-	let query = frmCurrency+'_'+toCurrency;
+	let query = `${frmCurrency}_${toCurrency}`;
 	
 	amt = document.getElementById('amount').value;
 
-	fetch('https://free.currencyconverterapi.com/api/v5/convert?q='+query+'&compact=ultra')
+	fetch(`https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=ultra`)
   .then(
     response => {
       if (response.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ' +
-          response.status);
+        console.log(`Looks like there was a problem. Status Code: ${response.status}`);
         return;
       }
 
