@@ -12,23 +12,16 @@ const dbPromise = idb.open('currency-converter', 2, upgradeDb => {
 		upgradeDb.createObjectStore('currency', {keypath: 'id'});
 	}
 });
-fetch(url)
-  .then(response => response.json())
-  .then(currencies => {
-  dbPromise.then(db => {
-    if(!db) return;
-    const currencyExchange = [currencies.results];
-    const tx = db.transaction('currency', 'readwrite');
-    const store = tx.objectStore('currency');
-    let i = 0;
-    currencyExchange.forEach(currency => {
-      for (let value in currency) {
-        store.put(currency[value]);
-      }
-    });
-    return tx.complete;
-  });
-});
+dbPromise.then(function(db) {
+	var tx = db.transaction('currency', 'readwrite');
+	var store = tx.objectStore('currency');
+
+	fetch(`https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=ultra`)
+     .then(
+     	response => {
+     		if
+     	})
+})
 
 
 
@@ -51,14 +44,15 @@ fetch('https://free.currencyconverterapi.com/api/v5/countries')
 			currencySelect[i].add(defaultCurrency);
 			currencySelect[i].selectedIndex = 0;
       	let option;
+
       	for (const result in results) {
       		for (const id in results[result]) {
       		
       		let data = results[result][id]['currencyId'];
       		option = document.createElement('option');
       		option.text = data;
-      		
-			currencySelect[i].add(option)
+      let uniqueCurrency = [...new Set(currencySelect)];		
+			uniqueCurrency[i].add(option)
            }
       	  }
       	}
