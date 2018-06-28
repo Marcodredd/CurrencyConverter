@@ -1,3 +1,5 @@
+import idb from 'idb'
+
 document.getElementById('convert').onclick = calculateAmt;
 
 function calculateAmt() {
