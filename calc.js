@@ -30,8 +30,8 @@ fetch('https://free.currencyconverterapi.com/api/v5/countries')
       		
       		let data = results[result][id]['currencyId'];
       		option = document.createElement('option');
-      		
-			currencySelect[i].add(option)
+      		option.text = data;
+			     currencySelect[i].add(option)
            }
       	  }
       	}
