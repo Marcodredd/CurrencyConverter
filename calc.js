@@ -44,15 +44,16 @@ fetch('https://free.currencyconverterapi.com/api/v5/countries')
 			currencySelect[i].add(defaultCurrency);
 			currencySelect[i].selectedIndex = 0;
       	let option;
-
       	for (const result in results) {
       		for (const id in results[result]) {
       		
       		let data = results[result][id]['currencyId'];
       		option = document.createElement('option');
       		option.text = data;
-      let uniqueCurrency = [...new Set(currencySelect)];		
-			uniqueCurrency[i].add(option)
+
+          console.log(data);
+      		
+			currencySelect[i].add(option)
            }
       	  }
       	}
