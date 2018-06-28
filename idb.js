@@ -1,0 +1,1 @@
+var dbPromise = idb.open('currency-conveter', 1);
