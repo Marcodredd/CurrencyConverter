@@ -1,3 +1,9 @@
+if (!('indexedDB' in window)) {
+	console.log('This browser doesn\'t support IndexedDB');
+}
+
+var dbPromise = idb.open('currency-converter', 1);
+
 
 fetch('https://free.currencyconverterapi.com/api/v5/countries')
   .then(
