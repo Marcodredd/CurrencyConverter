@@ -4,7 +4,7 @@ if (!('indexedDB' in window)) {
 	console.log('This browser doesn\'t support IndexedDB');
 }
 
-var dbPromise = idb.open('currency-converter', 1, function(upgradeDb) {
+var dbPromise = idb.open('currency-converter', 2, function(upgradeDb) {
   switch (upgradeDb.oldVesrion) {
     case 0:
     upgradeDb.createObjectStore('currency', { keyPath: 'id' });
