@@ -61,7 +61,7 @@ fetch('https://free.currencyconverterapi.com/api/v5/currencies')
       		let data = results[result][id]['id'];
           
       		option = document.createElement('option');
-      		option.text = uniqueData;
+      		option.text = data;
 			     currencySelect[i].add(option)
            }
       	  }
