@@ -34,9 +34,6 @@ fetch(apiURL)
     return tx.complete;
   });
 });
-
-
-
 	
 
 fetch('https://free.currencyconverterapi.com/api/v5/countries')
@@ -68,6 +65,7 @@ fetch('https://free.currencyconverterapi.com/api/v5/countries')
           }
 
           let unique = data.filter(unigueData);
+          unique.sort();
           
       		option = document.createElement('option');
       		option.text = unique;
