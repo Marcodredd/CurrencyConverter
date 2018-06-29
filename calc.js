@@ -4,10 +4,10 @@ if (!('indexedDB' in window)) {
 	console.log('This browser doesn\'t support IndexedDB');
 }
 
-var dbPromise = idb.open('currency-rates', 3, function(upgradeDb) {
-  switch (upgradeDb.oldVesrion) {
-    case 0:
-    var store = upgradeDb.createObjectStore('rates', { keyPath: 'id' });
+var dbPromise = idb.open('currency-rates', 4, function(upgradeDb) {
+  console.log('making a new object store');
+  if (!upgradeDb.objectStoreNames.contains('rates')) {
+    upgradeDb.createObjectStore('rates');
   }
 });
 
