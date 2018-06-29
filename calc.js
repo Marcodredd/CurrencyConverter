@@ -7,7 +7,7 @@ if (!('indexedDB' in window)) {
 var dbPromise = idb.open('currency-rates', 2, function(upgradeDb) {
   switch (upgradeDb.oldVesrion) {
     case 0:
-    upgradeDb.createObjectStore('rates', { keyPath: 'id' });
+    var store = upgradeDb.createObjectStore('rates', { keyPath: 'id' });
   }
 });
 
