@@ -7,7 +7,7 @@ if (!('indexedDB' in window)) {
 var dbPromise = idb.open('currency-rates', 4, function(upgradeDb) {
   console.log('making a new object store');
   if (!upgradeDb.objectStoreNames.contains('rates')) {
-    upgradeDb.createObjectStore('rates');
+    upgradeDb.createObjectStore('rates', {keyPath: 'id'});
   }
 });
 
