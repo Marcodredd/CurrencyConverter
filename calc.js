@@ -59,9 +59,9 @@ fetch('https://free.currencyconverterapi.com/api/v5/countries')
       		for (const id in results[result]) {
       		
       		let data = results[result][id]['currencyId'];
-          
+          let uniqueData = data => [...Set(data)];
       		option = document.createElement('option');
-      		option.text = data;
+      		option.text = uniqueData;
 			     currencySelect[i].add(option)
            }
       	  }
