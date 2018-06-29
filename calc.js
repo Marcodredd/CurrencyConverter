@@ -39,7 +39,7 @@ fetch(apiURL)
 
 	
 
-fetch('https://free.currencyconverterapi.com/api/v5/currencies')
+fetch('https://free.currencyconverterapi.com/api/v5/countries')
   .then(
     response => {
       if (response.status !== 200) {
@@ -61,10 +61,16 @@ fetch('https://free.currencyconverterapi.com/api/v5/currencies')
       	for (const result in results) {
       		for (const id in results[result]) {
       		
-      		let data = results[result][id]['id'];
+      		let data = results[result][id]['currencyId'];
+
+          function unigueData = (value, index, self) {
+            return self.indexOf(value) === index;
+          }
+
+          let unique = data.filter(unigueData);
           
       		option = document.createElement('option');
-      		option.text = data;
+      		option.text = unique;
 			     currencySelect[i].add(option)
            }
       	  }
