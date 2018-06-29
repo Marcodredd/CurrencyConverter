@@ -60,7 +60,7 @@ fetch('https://free.currencyconverterapi.com/api/v5/countries')
       		
       		let data = results[result][id]['currencyId'];
 
-          function unigueData = (value, index, self) {
+          function unigueData(value, index, self) {
             return self.indexOf(value) === index;
           }
 
