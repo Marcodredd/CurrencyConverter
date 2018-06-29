@@ -59,16 +59,10 @@ fetch('https://free.currencyconverterapi.com/api/v5/countries')
       		for (const id in results[result]) {
       		
       		let data = results[result][id]['currencyId'];
-
-          function unigueData(value, index, self) {
-            return self.indexOf(value) === index;
-          }
-
-          let unique = data.filter(unigueData);
-          unique.sort();
+          data.sort();
           
       		option = document.createElement('option');
-      		option.text = unique;
+      		option.text = data;
 			     currencySelect[i].add(option)
            }
       	  }
