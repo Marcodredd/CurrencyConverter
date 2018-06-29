@@ -39,7 +39,7 @@ fetch(apiURL)
 
 	
 
-fetch('https://free.currencyconverterapi.com/api/v5/countries')
+fetch('https://free.currencyconverterapi.com/api/v5/currencies')
   .then(
     response => {
       if (response.status !== 200) {
@@ -62,6 +62,7 @@ fetch('https://free.currencyconverterapi.com/api/v5/countries')
       		for (const id in results[result]) {
       		
       		let data = results[result][id]['currencyId'];
+          
       		option = document.createElement('option');
       		option.text = data;
 			     currencySelect[i].add(option)
