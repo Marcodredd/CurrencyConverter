@@ -11,6 +11,33 @@ var dbPromise = idb.open('currency-rates', 4, function(upgradeDb) {
   }
 });
 
+dbPromise.then(function(db) {
+  var tx = db.transaction('currency-rates', 'readwrite');
+  var currencyStore = tx.objectStore('currency-rates');
+
+  fetch('https://free.currencyconverterapi.com/api/v5/convert?q=USD_PHP,PHP_USD')
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
+
+      // Examine the text in the response
+      response.json().then(function(data) {
+
+      });
+    }
+  )
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
+  currencyStore.add(data);
+  return tx.complete;
+});
+
+
 
 	
 
