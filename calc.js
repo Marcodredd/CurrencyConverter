@@ -61,7 +61,7 @@ fetch('https://free.currencyconverterapi.com/api/v5/currencies')
       	for (const result in results) {
       		for (const id in results[result]) {
       		
-      		let data = results[result][id]['currencyId'];
+      		let data = results[result][id]['id'];
           
       		option = document.createElement('option');
       		option.text = data;
