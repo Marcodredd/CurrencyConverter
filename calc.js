@@ -10,6 +10,7 @@ var dbPromise = idb.open('currency-converter', 1, function(upgradeDb) {
     upgradeDb.createObjectStore('currency', { keyPath: 'id' });
   }
 });
+
 	
 
 fetch('https://free.currencyconverterapi.com/api/v5/currencies')
