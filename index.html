@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="A Currency Converter as an offline first application">
+  <meta name="author" content="A-J Roos">
+  <link rel="manifest" href="manifest.json">
 
 	<title>Currency Converter</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Playfair+Display" rel="stylesheet">
+	<link rel="stylesheet" href="public/css/styles.min.css" type="text/css">
+	<link rel="stylesheet" href="public/css/normalize.min.css" />
 	
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	
 
 	<link rel="stylesheet" type="text/css" href="curr.css">
@@ -14,7 +22,7 @@
 <body>
 	<header>
 		<h1>Currency Calculator</h1>
- 		<h3>Click the drop-down and select different currencies</h3>
+ 		<h2>Click the drop-down and select different currencies</h3>
 	</header>
 	<main>
 		<section>
@@ -35,6 +43,10 @@
 			<input type="text" id="outputAmount" name="output_amount" disabled="">
 		</section>
 	</main>
+	<footer>
+		<p>Courtesy of Google Scholar</p>
+		<p>InCollaboration with free.currencyconverapi.com</p>
+	</footer>
 	
  <script src="idb.js"></script>
  <script src="calc.js"></script>
