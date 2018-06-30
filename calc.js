@@ -37,7 +37,7 @@ dbPromise.then(function(db) {
   return tx.complete;
 });
 
-//Fetch list of all currencies
+
 fetch('https://free.currencyconverterapi.com/api/v5/currencies')
   .then(
     response => {
@@ -64,8 +64,7 @@ fetch('https://free.currencyconverterapi.com/api/v5/currencies')
           
       		option = document.createElement('option');
       		option.text = data;
-			     currencySelect[i].add(option);
-
+			     currencySelect[i].add(option)
            }
       	  }
       	}
