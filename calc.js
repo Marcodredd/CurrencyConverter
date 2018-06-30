@@ -60,10 +60,8 @@ fetch('https://free.currencyconverterapi.com/api/v5/currencies')
       	let currencyArray = Object.keys(data.results).sort();
           
       		option = document.createElement('option');
-      		option.text = currencyArray;
-			     currencySelect[i].add(option)
-           
-      	  
+      		option.text = currencyArray[i];
+			     currencySelect[i].add(option);
       	}
 
       });
