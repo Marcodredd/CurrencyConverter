@@ -16,20 +16,6 @@ self.addEventListener('install', function(event) {
  );
 });
 
-self.addEventListener('activate', function(event) {
-  event.waitUntil(
-    caches.keys().then(keyList =>
-      Promise.all(
-        keyList.map(key => {
-          if (key !== cacheName) {
-            return caches.delete(key);
-          }
-        }),
-        ),
-      ),
-    ),
-});
-
 self.addEventListener('fetch', function(event) {
 	event.respondWith(async function() {
 		const cachedResponse = await caches.match(event.request);
