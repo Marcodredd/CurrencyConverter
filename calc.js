@@ -37,10 +37,7 @@ dbPromise.then(function(db) {
   return tx.complete;
 });
 
-
-
-	
-
+//Fetch list of all currencies
 fetch('https://free.currencyconverterapi.com/api/v5/currencies')
   .then(
     response => {
@@ -48,7 +45,7 @@ fetch('https://free.currencyconverterapi.com/api/v5/currencies')
         console.log(`Looks like there was a problem. Status Code: ${response.status}`);
         return;
       }
-      response.json().then(results => {
+      response.json().then(data => {
       	let currencySelect;
 			let i;
 			currencySelect = document.querySelectorAll('.currencyChange');
@@ -60,16 +57,13 @@ fetch('https://free.currencyconverterapi.com/api/v5/currencies')
 			currencySelect[i].add(defaultCurrency);
 			currencySelect[i].selectedIndex = 0;
       	let option;
-      	for (const result in results) {
-      		for (const id in results[result]) {
-      		
-      		let data = results[result][id]['id'];
+      	let currencyArray = Object.keys(data.results).sort();
           
       		option = document.createElement('option');
-      		option.text = data;
+      		option.text = currencyArray;
 			     currencySelect[i].add(option)
-           }
-      	  }
+           
+      	  
       	}
 
       });
