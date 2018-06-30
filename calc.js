@@ -58,12 +58,12 @@ fetch('https://free.currencyconverterapi.com/api/v5/currencies')
 			currencySelect[i].selectedIndex = 0;
       	let option;
       	let currencyArray = Object.keys(data.results).sort();
-          
+        for (i = 0; i < currencyArray.length; i++) {
       		option = document.createElement('option');
       		option.text = currencyArray[i];
 			     currencySelect[i].add(option);
       	}
-
+      }
       });
     }
   )
