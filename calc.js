@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('Enter a URL.');
     }
 
-    const currencyUrl = `https://free.currencyconverterapi.com/api/v5/convert?q=${queryString}&compact=ultra`;
+    const currencyUrl = `https://free.currencyconverterapi.com/api/v5/convert?q=${query}&compact=ultra`;
     return currencyUrl;
   }
 
