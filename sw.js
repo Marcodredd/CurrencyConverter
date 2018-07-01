@@ -3,7 +3,6 @@ var staticCacheName = 'currency-converter';
 const cacheFiles = [
   'curr.css',
   'index.html',
-  'manifest.json',
   'public/css/styles.min.css',
   'public/css/styles.min.css.map',
   'public/css/normalize.min.css',
