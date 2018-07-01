@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         populateCurrencies(currencyArray);
       })
       .catch(err => {
-          console.log(`Fecth error : -S', ${error}`
+          console.log(`There is an error, ${error}`
         );
         // Get currency exchange rate when the user is offline
         idbDatabase.getCurrencies('allCurrencies').then(currencyArray => {
