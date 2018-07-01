@@ -65,10 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
   var currencyFrm = document.querySelector('.currencyChangeFrm');
   var currencyTo = document.querySelector('.currencyChangeTo');
   var button = document.querySelector('.convertTo');
-  var currencyInput = document.querySelector(
+  const currencyInput = document.querySelector(
     'input#input_Amount',
   );
-  var currencyOutput = document.querySelector(
+  const currencyOutput = document.querySelector(
     'input#output_amount',
   );
 
