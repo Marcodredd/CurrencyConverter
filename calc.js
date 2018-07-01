@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  function APIUrl(query) {
+  function getAPIUrl(query) {
     if (typeof query === 'undefined') {
       console.log('Enter a URL.');
     }
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currFrm = document.querySelector('.currencyChangeFrm').value;
     const currTo = document.querySelector('.currencyChangeTo').value;
     const currencyQuery = `${currFrm}_${currTo}`;
-    const url = APIUrl(currencyQuery);
+    const url = getAPIUrl(currencyQuery);
 
     getCurrencyRate(url, currencyQuery);
   }
