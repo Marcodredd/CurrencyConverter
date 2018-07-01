@@ -155,10 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
         resolveExchangeRate(...exchangeRate, inputAmount);
       })
       .catch(err => {
-        console.log(
-          `There is an error, ${err}`,
+        console.log(`There is an error, ${err}`
         );
-        
         idbDatabase.getCurrencies(query).then(data => {
           if (typeof data === 'undefined') return;
           resolveExchangeRate(data, inputAmount);
