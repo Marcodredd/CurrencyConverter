@@ -65,11 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
   var currencyFrm = document.querySelector('.currencyChangeFrm');
   var currencyTo = document.querySelector('.currencyChangeTo');
   var button = document.querySelector('.convertTo');
-  const originalCurrencyInputField = document.querySelector(
-    'input#original_amount',
+  const currencyInput = document.getElementById(
+    'input_Amount',
   );
-  const convertedCurrencyInputField = document.querySelector(
-    'input#converted_amount',
+  const currencyOutput = document.getElementById(
+    'output_amount',
   );
 
   function createNode(nodeType, currency) {
@@ -209,8 +209,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const exchangedCurrency = input * exchangeRate;
 
-    originalCurrencyInputField.value = input;
-    convertedCurrencyInputField.value = exchangedCurrency.toFixed(2);
+    currencyInput.value = input;
+    currencyOutput.value = exchangedCurrency.toFixed(2);
   }
 
   function addEventListeners() {
