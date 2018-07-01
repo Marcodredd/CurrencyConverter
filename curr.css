@@ -5,6 +5,10 @@ html {
   font-size: 62.5%;
 }
 
+body {
+    background-position: center;
+}
+
 main {
   display: flex;
   flex-direction: row;
