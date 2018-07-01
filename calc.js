@@ -66,10 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
   var currencyTo = document.querySelector('.currencyChangeTo');
   var button = document.querySelector('.convertTo');
   var currencyInput = document.querySelector(
-    'inputAmount',
+    'input#input_Amount',
   );
   var currencyOutput = document.querySelector(
-    'output_amount',
+    'input#output_amount',
   );
 
   function createNode(nodeType, currency) {
