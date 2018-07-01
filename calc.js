@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function addEventListeners() {
     button.addEventListener('click', fetchExchangeRate);
-    body.addEventListener('keydown', e => keyPressedEvent(e));
+    body.addEventListener('keydown', e => btnEnterPressed(e));
   }
 
 
