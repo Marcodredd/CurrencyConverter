@@ -16,7 +16,7 @@ var dbPromise = idb.open('currencies', 1, upgradeDb => {
 });
 
 class idbDatabase {
-  function getCurrencies(key) {
+  getCurrencies(key) {
     return dbPromise
       .then(db => {
         if (!db) return;
