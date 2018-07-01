@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         idbDatabase.currencyData(query, exchangeRate);
 
-        calculateExchangeRate(...exchangeRate, inputAmount);
+        resolveExchangeRate(...exchangeRate, inputAmount);
       })
       .catch(err => {
         console.log(
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         idbDatabase.getCurrencies(query).then(data => {
           if (typeof data === 'undefined') return;
-          calculateExchangeRate(data, inputAmount);
+          resolveExchangeRate(data, inputAmount);
         });
       });
   }
