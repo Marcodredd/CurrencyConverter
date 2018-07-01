@@ -17,11 +17,24 @@ self.addEventListener('install', function(event) {
  );
 });
 
-self.addEventListener('fetch', function(event) {
-	event.respondWith(async function() {
-		const cachedResponse = await caches.match(event.request);
-		if (cachedResponse) return cachedResponse;
-		return fetch(event.request);
-	}());
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keyList =>
+      Promise.all(
+        keyList.map(key => {
+          if (key !== cacheName) {
+            return caches.delete(key);
+          }
+        }),
+      ),
+    ),
+  );
+});
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+    .then(response => response || fetch(event.request)),
+    );
 });
 
