@@ -6,12 +6,9 @@ html {
 }
 
 body {
-  font-size: 1.6rem;
-  display: flex;
-  flex-direction: column;
-  font-family: Montserrat, sans-serif;
-  min-height: 100vh;
-  justify-content: space-around;
+  background: #e9d362;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #333333, #e9d362);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #333333, #e9d362); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 main {
