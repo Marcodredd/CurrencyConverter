@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         populateCurrencies(currencyArray);
       })
       .catch(err => {
-          console.log(`There is an error, ${error}`
+          console.log(`There is an error, ${err}`
         );
         // Get currency exchange rate when the user is offline
         idbDatabase.getCurrencies('allCurrencies').then(currencyArray => {
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(err => {
         console.log(
-          `There is an error, ${error}`,
+          `There is an error, ${err}`,
         );
         
         idbDatabase.getCurrencies(query).then(data => {
