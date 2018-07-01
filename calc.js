@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(err => {
         console.error(
-          `This error has occured. ${error}`,
+          `This error has occured. ${err}`,
         );
         idbDatabase.getCurrencies(query).then(data => {
           if (typeof data === 'undefined') return;
