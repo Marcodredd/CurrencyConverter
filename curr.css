@@ -110,8 +110,16 @@ footer {
   }
 }
 
-div {
-    font-family: consolas;
-    border: 2px #73AD21;
-    border-radius: 25px;
+.section__input,
+.section__output {
+  display: flex;
+  flex-direction: column;
+}
+
+.section__input {
+  margin-right: 30px;
+}
+
+.section__output {
+  margin-left: 30px;
 }
