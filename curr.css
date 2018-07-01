@@ -38,12 +38,6 @@ header {
   margin-left: 30px;
 }
 
-hr {
-    width: 400px;
-    border-top: 1px solid #f8f8f8;
-    border-bottom: 1px solid rgba(0,0,0,0.2);
-}
-
 h1 {
   font-size: 3.2rem;
   font-family: "Playfair Display", serif;
@@ -64,7 +58,7 @@ label {
 input[type="text"],
 input[type="text"]:disabled,
 input[type="number"] {
-  width: 250px;
+  width: 200px;
   padding: 4px;
 }
 
@@ -123,32 +117,3 @@ footer {
   }
 }
 
-@media (max-width: 569px) {
-  main {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  h2 {
-    width: 90%;
-  }
-
-  main .input_section,
-  main .convert_section {
-    margin: 0;
-  }
-
-  select {
-    width: 80px;
-  }
-}
-
-@media (max-width: 768px) {
-  .input_section {
-    margin-right: 10px;
-  }
-
-  .convert_section {
-    margin-left: 10px;
-  }
-}
