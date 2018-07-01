@@ -7,10 +7,12 @@ self.addEventListener('install', function(event) {
        'index.html',
        'curr.css',
    	   'calc.js',
-       'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css',
+       'public/css/styles.min.css',
+       'public/css/normalize.min.css',
        'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css',
        'https://free.currencyconverterapi.com/api/v5/countries',
-       'https://marcodredd.github.io/CurrencyConverter/'
+       'https://marcodredd.github.io/CurrencyConverter/',
+       'https://fonts.googleapis.com/css?family=Montserrat|Playfair+Display'
      ]);
    })
  );
