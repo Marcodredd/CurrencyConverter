@@ -10,29 +10,31 @@ self.addEventListener('install', function(event) {
        'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css',
        'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css',
        'https://free.currencyconverterapi.com/api/v5/countries',
-       'https://marcodredd.github.io/CurrencyConverter/'
+       'https://marcodredd.github.io/CurrencyConverter/',
+       'https://fonts.googleapis.com/css?family=Montserrat|Playfair+Display'
      ]);
    })
  );
 });
 
-self.addEventListener('activate', function(event) {
+self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then(function(cacheNames) {
-      return Promise.all(
-        cacheNames.filter(function(cacheName) {
-        }).map(function(cacheName) {
-          return caches.delete(cacheName);
-        })
-        );
-    })
+    caches.keys().then(keyList =>
+      Promise.all(
+        keyList.map(key => {
+          if (key !== cacheName) {
+            return caches.delete(key);
+          }
+        }),
+      ),
+    ),
+  );
+});
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+    .then(response => response || fetch(event.request)),
     );
 });
 
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    caches.match(event.request).then(function(response) {
-      return response || fetch(event.request);
-    })
-    );
-});
