@@ -117,3 +117,8 @@ footer {
   }
 }
 
+div {
+    font-family: consolas;
+    border: 2px #73AD21;
+    border-radius: 25px;
+}
