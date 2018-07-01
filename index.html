@@ -13,9 +13,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat|Playfair+Display" rel="stylesheet">
 	<link rel="stylesheet" href="public/css/styles.min.css" type="text/css">
 	<link rel="stylesheet" href="public/css/normalize.min.css" />
-	
-	
-
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="curr.css">
 
 </head>
@@ -25,7 +23,8 @@
  		<h3>Click the drop-down and select different currencies</h#>
 	</header>
 	<main>
-		<section>
+		<form>
+		  <div>
 			<label for = "amount">Enter an Amount</label>
 			<input type="number" name="input" placeholder="Enter Amount" id ="amount"/>
 			<label for="frmCurrency">Convert From</label>
@@ -35,13 +34,14 @@
  			<select class = "currencyChangeTo" id ="currencyTo" aria-label="currencyConvertTo">	
  			</select>
  			<button class="convertTo">Convert</button>
-		</section>
-		<section>
+		  </div>
+		  <div>
 			<label for="input_amount">Input Amount</label>
 			<input type="text" id="inputAmount" name="inputAmount" disabled="">
 			<label for="output_amount">Output Amount</label>
 			<input type="text" id="outputAmount" name="output_amount" disabled="">
-		</section>
+		  </div>
+		</form>
 	</main>
 	<footer>
 		<p>Courtesy of Google Scholar</p>
