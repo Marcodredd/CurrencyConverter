@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         populateCurrencies(currencyArray);
       })
       .catch(err => {
-          console.log(`There is an error, ${err}`
+          console.error(`There is an error, ${error}`
         );
       
         idbDatabase.getCurrencies('allCurrencies').then(currencyArray => {
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(err => {
         console.error(
-          `The following error occured while trying to get the conversion rate. ${err}`,
+          `The following error occured while trying to get the conversion rate. ${error}`,
         );
         idbDatabase.getCurrencies(query).then(data => {
           if (typeof data === 'undefined') return;
