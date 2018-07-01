@@ -15,8 +15,8 @@ var dbPromise = idb.open('currencies', 1, upgradeDb => {
   }
 });
 
-function idbDatabase {
-  static getCurrencies(key) {
+class idbDatabase {
+  function getCurrencies(key) {
     return dbPromise
       .then(db => {
         if (!db) return;
@@ -61,24 +61,21 @@ function idbDatabase {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const body = document.querySelector('body');
-  const currencyConvertFrom = document.querySelector('.currency__convert-from');
-  const currencyConvertTo = document.querySelector('.currency__convert-to');
-  const button = document.querySelector('.convert');
-  const originalCurrencyInputField = document.querySelector(
-    'input#original_amount',
+  var body = document.querySelector('body');
+  var currencyFrm = document.querySelector('.currencyChangeFrm');
+  var currencyTo = document.querySelector('.currencyChangeTo');
+  var button = document.querySelector('.convertTo');
+  var currencyInput = document.querySelector(
+    'inputAmount',
   );
-  const convertedCurrencyInputField = document.querySelector(
-    'input#converted_amount',
+  var currencyOutput = document.querySelector(
+    'output_amount',
   );
 
-  /**
-   * Create HTML Element and set inline value of the currency
-   */
   function createNode(nodeType, currency) {
     if (arguments.length !== 2) {
-      console.error(
-        'You need to specify both arguments for the node to be created correctly.',
+      console.log(
+        'Enter both arguments.',
       );
     }
 
@@ -88,37 +85,29 @@ document.addEventListener('DOMContentLoaded', () => {
     return node;
   }
 
-  /**
-   * Add each currency to both select HTML Elements on the DOM
-   */
-  function addCurrenciesToDOM(arrayOfCurrencies) {
+  function populateCurrencies(currencyArray) {
     if (
-      arrayOfCurrencies.length === 0 ||
-      typeof arrayOfCurrencies === 'undefined'
+      currencyArray.length === 0 ||
+      typeof currencyArray === 'undefined'
     ) {
-      console.error('Currency array cannot be empty or undefined.');
+      console.log('Array is empty.');
     }
 
-    const nodeTypeToCreate = 'option';
+    var createCurrNode = 'option';
 
-    arrayOfCurrencies.map(currency => {
-      currencyConvertFrom.appendChild(createNode(nodeTypeToCreate, currency));
-      currencyConvertTo.appendChild(createNode(nodeTypeToCreate, currency));
+    currencyArray.map(currency => {
+      currencyFrm.appendChild(createNode(createCurrNode, currency));
+      currencyTo.appendChild(createNode(createCurrNode, currency));
     });
   }
 
-  /**
-   * Get amount in the input field
-   */
   function getInputAmount() {
     const inputAmount = document.querySelector('input#amount').value;
     return inputAmount;
   }
 
-  /**
-   * Get a list of all the currencies using the API
-   */
-  function fetchListOfCurrencies() {
+  
+  function getListOfCurrencies() {
     const url = 'https://free.currencyconverterapi.com/api/v5/currencies';
 
     fetch(url, {
@@ -126,32 +115,29 @@ document.addEventListener('DOMContentLoaded', () => {
     })
       .then(res => res.json())
       .then(data => {
-        const arrayOfCurrencies = Object.keys(data.results).sort();
+        const currencyArray = Object.keys(data.results).sort();
 
-        // Save currency list to IndexedDB to be used when the user is offline
-        Database.saveCurrencyArray('allCurrencies', arrayOfCurrencies);
+        
+        idbDatabase.currencyArray('allCurrencies', currencyArray);
 
-        addCurrenciesToDOM(arrayOfCurrencies);
+        populateCurrencies(currencyArray);
       })
       .catch(err => {
-        console.error(
-          `The following error occured while trying to get the list of currencies. ${err}`,
+          console.log(`Fecth error : -S', ${error}`
         );
         // Get currency exchange rate when the user is offline
-        Database.getCurrencies('allCurrencies').then(arrayOfCurrencies => {
-          if (typeof arrayOfCurrencies === 'undefined') return;
-          addCurrenciesToDOM(arrayOfCurrencies);
+        idbDatabase.getCurrencies('allCurrencies').then(currencyArray => {
+          if (typeof currencyArray === 'undefined') return;
+          populateCurrencies(currencyArray);
         });
       });
   }
 
-  /**
-   * Fetch the exchange rate between two currencies
-   */
-  function fetchCurrencyRate(url, queryString) {
+  
+  function getCurrencyRate(url, query) {
     if (arguments.length !== 2) {
-      console.error(
-        'You need to specify both arguments for fetch to query the currency exchange rate.',
+      console.log(
+        'Enter both currencies for their exchange rate.',
       );
     }
 
@@ -164,92 +150,78 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => {
         const exchangeRate = Object.values(data);
 
-        // Save currency exchange rate to IndexedDB to be used when the user is offline
-        Database.saveCurrencies(queryString, exchangeRate);
+        idbDatabase.currencyData(query, exchangeRate);
 
         calculateExchangeRate(...exchangeRate, inputAmount);
       })
       .catch(err => {
-        console.error(
-          `The following error occured while trying to get the conversion rate. ${err}`,
+        console.log(
+          (`Fecth error : -S', ${error}`,
         );
-        // Get currency exchange rate when the user is offline
-        Database.getCurrencies(queryString).then(data => {
+        
+        idbDatabase.getCurrencies(query).then(data => {
           if (typeof data === 'undefined') return;
           calculateExchangeRate(data, inputAmount);
         });
       });
   }
 
-  /**
-   * Build the API URL to use to get the conversion rate for a specific set of currencies
-   */
-  function buildAPIUrl(queryString) {
-    if (typeof queryString === 'undefined') {
-      console.error('Please provide a query string to build the API URL.');
+
+  function APIUrl(query) {
+    if (typeof query === 'undefined') {
+      console.log('Enter a URL.');
     }
 
     const currencyUrl = `https://free.currencyconverterapi.com/api/v5/convert?q=${queryString}&compact=ultra`;
     return currencyUrl;
   }
 
-  /**
-   * Get the two currencies selected in the DOM and get the exchange rate
-   */
-  function getExchangeRate() {
-    const currency1 = document.querySelector('.currency__convert-from').value;
-    const currency2 = document.querySelector('.currency__convert-to').value;
-    const currencyQueryString = `${currency1}_${currency2}`;
-    const url = buildAPIUrl(currencyQueryString);
 
-    fetchCurrencyRate(url, currencyQueryString);
+  function fetchExchangeRate() {
+    const currFrm = document.querySelector('.currencyChangeFrm').value;
+    const currTo = document.querySelector('.currencyChangeTo').value;
+    const currencyQuery = `${currFrm}_${currTo}`;
+    const url = APIUrl(currencyQuery);
+
+    getCurrencyRate(url, currencyQuery);
   }
 
-  /**
-   * Detect if the enter button has been pressed and get the exchange rate
-   */
-  function detectEnterPressed(event) {
+
+  function keyPressedEvent(event) {
     if (typeof event === 'undefined') {
-      console.error(
-        "Most likely the DOM key event listener wasn't started. 'Enter' key will not fire.",
+      console.log(
+        "Hit the enter key.",
       );
     }
 
     if (event.keyCode === 13) {
-      getExchangeRate();
+      fetchExchangeRate();
     }
   }
 
-  /**
-   * Calculate the exchange rate based on the amount entered and the currencies selected
-   */
-  function calculateExchangeRate(exchangeRate, input) {
+  
+  function resolveExchangeRate(exchangeRate, input) {
     if (arguments.length !== 2) {
-      console.error(
-        'You need to specify both arguments for the exchange rate to be calculated correctly.',
+      console.log(
+        'Enter two values.',
       );
     }
 
-    const convertedCurrency = input * exchangeRate;
+    const exchangedCurrency = input * exchangeRate;
 
-    originalCurrencyInputField.value = input;
-    convertedCurrencyInputField.value = convertedCurrency.toFixed(2);
+    currencyInput.value = input;
+    currencyOutput.value = exchangedCurrency.toFixed(2);
   }
 
-  /**
-   * Add event listeners that is needed
-   */
   function addEventListeners() {
     button.addEventListener('click', getExchangeRate);
-    body.addEventListener('keydown', e => detectEnterPressed(e));
+    body.addEventListener('keydown', e => keyPressedEvent(e));
   }
 
-  /**
-   * Add Event Listeners and get the currencies to display on the DOM
-   */
+
   function init() {
     addEventListeners();
-    fetchListOfCurrencies();
+    getListOfCurrencies();
   }
 
   init();
