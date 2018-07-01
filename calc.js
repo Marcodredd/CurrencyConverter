@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const currencyInput = document.querySelector(
     'input#original_amount',
   );
-  const currencyOutput = document.getElementById(
+  const currencyOutput = document.querySelector(
     'input#converted_amount',
   );
 
