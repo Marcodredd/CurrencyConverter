@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  function keyPressedEvent(event) {
+  function btnEnterPressed(event) {
     if (typeof event === 'undefined') {
       console.log(
         "Hit the enter key.",
