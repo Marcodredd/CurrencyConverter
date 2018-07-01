@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(err => {
         console.log(
-          (`Fecth error : -S', ${error}`,
+          `There is an error, ${error}`,
         );
         
         idbDatabase.getCurrencies(query).then(data => {
