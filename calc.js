@@ -31,7 +31,7 @@ class idbDatabase {
       });
   }
 
-  function currencyArray(key, currencyArray) {
+  currencyArray(key, currencyArray) {
     return dbPromise
       .then(db => {
         const tx = db.transaction('currency-rates', 'readwrite');
@@ -45,7 +45,7 @@ class idbDatabase {
       });
   }
 
-  function currencyData(key, currencies) {
+  currencyData(key, currencies) {
     return dbPromise
       .then(db => {
         const tx = db.transaction('currency-rates', 'readwrite');
