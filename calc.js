@@ -4,59 +4,62 @@ if (!('indexedDB' in window)) {
 	console.log('This browser doesn\'t support IndexedDB');
 }
 
-const dbPromise = idb.open('currencies', 1, upgradeDb => {
+var dbPromise = idb.open('currencies', 1, upgradeDb => {
   switch (upgradeDb.oldVersion) {
     case 0:
-      upgradeDb.createObjectStore('currencies');
+      upgradeDb.createObjectStore('currency-rates');
       break;
     default:
-      console.error('IndexedDB database could not be created.');
+      console.log('Error creating database');
       break;
   }
 });
 
-export default class Database {
+function idbDatabase {
   static getCurrencies(key) {
     return dbPromise
       .then(db => {
         if (!db) return;
-        const tx = db.transaction('currencies');
-        const store = tx.objectStore('currencies');
+        var tx = db.transaction('currency-rates');
+        var store = tx.objectStore('currency-rates');
 
-        const data = store.get(key);
-        return data;
+        var currData = store.get(key);
+        return currData;
       })
       .catch(err => {
         console.log('Fecth error : -S', err);
       });
   }
 
-  static saveCurrencyArray(key, arrayOfCurrencies) {
+  function currencyArray(key, currencyArray) {
     return dbPromise
       .then(db => {
-        const transaction = db.transaction('currencies', 'readwrite');
-        const store = transaction.objectStore('currencies');
+        const tx = db.transaction('currency-rates', 'readwrite');
+        const store = tx.objectStore('currency-rates');
 
-        store.put(arrayOfCurrencies, key);
+        store.put(currencyArray, key);
+        return tx.complete;
       })
       .catch(err => {
         console.log('Fecth error : -S', err);
       });
   }
 
-  static saveCurrencies(key, currencies) {
+  function currencyData(key, currencies) {
     return dbPromise
       .then(db => {
-        const transaction = db.transaction('currencies', 'readwrite');
-        const store = transaction.objectStore('currencies');
+        const tx = db.transaction('currency-rates', 'readwrite');
+        const store = tx.objectStore('currency-rates');
 
         currencies.forEach(currency => store.put(currency, key));
+        return tx.complete;
       })
       .catch(err => {
         console.log('Fecth error : -S', err);
       });
   }
 }
+
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.querySelector('body');
   const currencyConvertFrom = document.querySelector('.currency__convert-from');
