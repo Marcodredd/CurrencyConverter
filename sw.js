@@ -10,6 +10,7 @@ self.addEventListener('install', function(event) {
      return cache.addAll([
        './',
        'curr.css',
+       'calc.js',
        'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css',
        'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css',
        'https://fonts.googleapis.com/css?family=Montserrat|Playfair+Display'
