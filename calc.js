@@ -16,7 +16,7 @@ var dbPromise = idb.open('currencies', 1, upgradeDb => {
 });
 
 class idbDatabase {
-  getCurrencies(key) {
+ static getCurrencies(key) {
     return dbPromise
       .then(db => {
         if (!db) return;
@@ -31,7 +31,7 @@ class idbDatabase {
       });
   }
 
-  currencyArray(key, currencyArray) {
+  static currencyArray(key, currencyArray) {
     return dbPromise
       .then(db => {
         const tx = db.transaction('currency-rates', 'readwrite');
@@ -45,7 +45,7 @@ class idbDatabase {
       });
   }
 
-  currencyData(key, currencies) {
+  static currencyData(key, currencies) {
     return dbPromise
       .then(db => {
         const tx = db.transaction('currency-rates', 'readwrite');
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(err => {
           console.log(`There is an error, ${err}`
         );
-        // Get currency exchange rate when the user is offline
+      
         idbDatabase.getCurrencies('allCurrencies').then(currencyArray => {
           if (typeof currencyArray === 'undefined') return;
           populateCurrencies(currencyArray);
