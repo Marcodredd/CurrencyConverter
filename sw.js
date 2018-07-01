@@ -1,43 +1,27 @@
 var staticCacheName = 'currency-converter';
 
-const cacheFiles = [
-  'curr.css',
-  'index.html',
-  'public/css/styles.min.css',
-  'public/css/styles.min.css.map',
-  'public/css/normalize.min.css',
-  'public/js/app.min.js',
-  'public/js/app.min.js.map',
-];
-
 self.addEventListener('install', function(event) {
  event.waitUntil(
    caches.open(staticCacheName).then(function(cache) {
-     return cache.addAll(cacheFiles);
-   }),
+     return cache.addAll([
+       'index.html',
+       'curr.css',
+   	   'calc.js',
+       'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css',
+       'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css',
+       'https://free.currencyconverterapi.com/api/v5/countries',
+       'https://marcodredd.github.io/CurrencyConverter/',
+       'https://fonts.googleapis.com/css?family=Montserrat|Playfair+Display'
+     ]);
+   })
  );
 });
 
-self.addEventListener('activate', function(event) {
-  event.waitUntil(
-    caches.keys().then(keyList =>
-      Promise.all(
-        keyList.map(key => {
-          if (key !== cacheName) {
-          return caches.delete(key);
-        }
-      }),
-    ),
-  ),
- );
+self.addEventListener('fetch', function(event) {
+	event.respondWith(async function() {
+		const cachedResponse = await caches.match(event.request);
+		if (cachedResponse) return cachedResponse;
+		return fetch(event.request);
+	}());
 });
-
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches
-      .match(event.request)
-      .then(response => response || fetch(event.request)),
-  );
-});
-	
 
