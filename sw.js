@@ -9,7 +9,6 @@ self.addEventListener('install', function(event) {
    	   'calc.js',
        'public/css/styles.min.css',
        'public/css/normalize.min.css',
-       'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css',
        'https://free.currencyconverterapi.com/api/v5/countries',
        'https://marcodredd.github.io/CurrencyConverter/',
        'https://fonts.googleapis.com/css?family=Montserrat|Playfair+Display'
