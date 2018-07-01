@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function getInputAmount() {
-    const inputAmount = document.querySelector('input#amount').value;
+    const inputAmount = document.getElementById('amount').value;
     return inputAmount;
   }
 
