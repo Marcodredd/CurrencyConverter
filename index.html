@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
@@ -24,10 +24,10 @@
 			<label for = "amount">Enter an Amount</label>
 			<input type="number" name="amount" placeholder="Enter Amount" id ="amount"/>
 			<label for="frmCurrency">Convert From</label>
- 			<select class = "currencyChangeFrm" id ="frmCurrency" aria-label="currency to convert from">	
+ 			<select class = "currencyChangeFrm" id ="frmCurrency" aria-label="currency to convert from">
  			</select class="input_section">
  			<label for="toCurrency">Convert To</label>
- 			<select class = "currencyChangeTo" id ="toCurrency" aria-label="currency to convert to">	
+ 			<select class = "currencyChangeTo" id ="toCurrency" aria-label="currency to convert to">
  			</select class="convert_section">
  			<button class="convert">Convert</button>
 		  	</section>
@@ -42,15 +42,15 @@
 		<p>Courtesy of Google Scholar</p>
 		<p>InCollaboration with free.currencyconverterapi.com</p>
 	</footer>
-	
+
  <script src="idb.js"></script>
  <script src="calc.js"></script>
  <script>
 if('serviceWorker' in navigator) {
   navigator.serviceWorker
            .register('sw.js')
-           .then(function(registration) { 
-           	console.log("Service Worker Registered"); 
+           .then(function(registration) {
+           	console.log("Service Worker Registered");
            })
            .catch(function(error) {
            	console.log('Service worker registration failed, error:', error);
