@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
     background-position: center;
 }
@@ -14,7 +18,10 @@ main {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 100%;
+  width: 35%;
+  text-align: center;
+  margin: auto;
+  border: 3px solid #356668;
 }
 
 header {
@@ -51,6 +58,12 @@ h2 {
 label {
   font-size: 1.6rem;
   padding: 7px 0;
+}
+
+section {
+  display: inline-grid;
+  padding: 10px;
+  margin: auto;
 }
 
 input[type="text"],
